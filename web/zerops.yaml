@@ -1,0 +1,36 @@
+zerops:
+  - setup: web
+    build:
+      base: nodejs@24
+      envVariables:
+        # NEXT_PUBLIC_* vars are inlined at build time — they must live here,
+        # not in run.envVariables.
+        NEXT_PUBLIC_API_URL: https://api-1ec7-8080.prg1.zerops.app
+        NEXT_TELEMETRY_DISABLED: "1"
+        # Neon Auth config lives in run.envVariables; ${RUNTIME_*} lifts it
+        # into the build container because lib/auth/server.ts is evaluated
+        # during `next build`. References only — no literals here.
+        NEON_AUTH_BASE_URL: ${RUNTIME_NEON_AUTH_BASE_URL}
+        NEON_AUTH_COOKIE_SECRET: ${RUNTIME_NEON_AUTH_COOKIE_SECRET}
+      buildCommands:
+        # npm ci — clean install from the lockfile. A cached node_modules
+        # poisoned the next@15→16 upgrade build, so the cache is gone for good.
+        - npm ci
+        - npm run build
+        # Standalone output does not include static assets — copy them in
+        # so server.js can serve them.
+        - cp -r .next/static .next/standalone/.next/static
+        - cp -r public .next/standalone/public
+      # Self-deploy: [.] keeps the full source tree in the runtime container.
+      deployFiles: [.]
+    run:
+      base: nodejs@24
+      ports:
+        - port: 3000
+          httpSupport: true
+      healthCheck:
+        httpGet:
+          port: 3000
+          path: /
+      # start: is exec'd without a shell, so the 0.0.0.0 bind lives in start.sh.
+      start: sh start.sh

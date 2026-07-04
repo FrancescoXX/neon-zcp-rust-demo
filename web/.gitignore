@@ -1,0 +1,7 @@
+# Dependencies + build output
+/node_modules
+/.next
+tsconfig.tsbuildinfo
+
+# Local env files — secrets live in Zerops env vars, never in the repo
+.env*

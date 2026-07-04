@@ -1,0 +1,23 @@
+# Local env files — secrets live in Zerops env vars, never in the repo
+.env
+.env.*
+
+# Dependencies + build output
+node_modules/
+.next/
+target/
+dist/
+build/
+out/
+.cargo/
+*.tsbuildinfo
+
+# Logs + OS noise
+*.log
+.DS_Store
+
+# Local tool folders
+.claude/
+.zcp/
+.cursor/
+.vscode/

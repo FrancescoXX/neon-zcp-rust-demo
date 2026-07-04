@@ -1,0 +1,23 @@
+zerops:
+  - setup: api
+    build:
+      base: rust@stable
+      envVariables:
+        CARGO_HOME: ./.cargo
+      buildCommands:
+        - cargo build --release
+      # Self-deploy: [.] keeps the full source tree in the runtime container.
+      deployFiles: [.]
+      cache:
+        - .cargo/registry
+        - target
+    run:
+      base: rust@stable
+      ports:
+        - port: 8080
+          httpSupport: true
+      healthCheck:
+        httpGet:
+          port: 8080
+          path: /health
+      start: ./target/release/api

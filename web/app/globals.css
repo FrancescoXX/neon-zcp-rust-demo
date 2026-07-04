@@ -1,0 +1,403 @@
+:root {
+  --bg: #0b0e14;
+  --panel: #121722;
+  --border: #232b3b;
+  --fg: #e6e9f0;
+  --muted: #8b94a7;
+  --accent: #6ee7b7;
+  --accent-2: #7dd3fc;
+  --danger: #f87171;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.nav nav a:hover {
+  color: var(--fg);
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-thin {
+  font-weight: 300;
+  color: var(--muted);
+}
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 2.5rem 0 3rem;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.badges {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--panel);
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot.ok {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.dot.err {
+  background: var(--danger);
+  box-shadow: 0 0 8px var(--danger);
+}
+
+.dot.loading {
+  background: var(--muted);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.stat .label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.stat .value {
+  margin-top: 0.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.95rem;
+}
+
+.error-text {
+  color: var(--danger);
+  font-family: ui-monospace, monospace;
+  font-size: 0.85rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+button.btn {
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+button.btn:hover {
+  border-color: var(--accent);
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+/* --- auth (chapter 3) --- */
+
+.nav-user {
+  color: var(--fg);
+  font-size: 0.9rem;
+}
+
+button.nav-signout {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+button.nav-signout:hover {
+  color: var(--fg);
+}
+
+.auth-panel {
+  max-width: 420px;
+  margin: 3rem auto 0;
+}
+
+.auth-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.auth-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.auth-form input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  color: var(--fg);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.auth-form input:focus {
+  border-color: var(--accent);
+}
+
+button.btn-primary {
+  margin-top: 0.25rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border: none;
+  color: #06251b;
+  font-weight: 600;
+}
+
+button.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.auth-alt {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.auth-alt a {
+  color: var(--accent);
+}
+
+/* --- tasks dashboard (chapter 6) --- */
+
+.task-count {
+  font-weight: 400;
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+.task-form {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.task-form input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.8rem;
+  color: var(--fg);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.task-form input:focus {
+  border-color: var(--accent);
+}
+
+.task-form button.btn {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+.task-list {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+}
+
+.task-main {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: 1;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.task-main input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.task-title {
+  overflow-wrap: anywhere;
+}
+
+.task-title.done {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.task-date {
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+button.task-delete {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+button.task-delete:hover {
+  color: var(--danger);
+}

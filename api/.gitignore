@@ -1,0 +1,6 @@
+# Build output + cargo cache (CARGO_HOME is ./.cargo per zerops.yaml)
+/target
+/.cargo
+
+# Local env files — secrets live in Zerops env vars, never in the repo
+.env*
